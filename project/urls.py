@@ -25,7 +25,6 @@ urlpatterns = [
     path("", include("apps.shop.urls")),
     path("blog/", include("apps.blog.urls")),
     path("membership/", include("apps.membership.urls")),
-    path("newsletter/", include("apps.newsletter.urls")),
 ]
 
 if settings.DEBUG:

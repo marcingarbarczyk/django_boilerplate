@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand" href="{% url 'shop:home' %}">Example portal</a>
-        <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+        <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
                 data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,15 +10,13 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a aria-current="page"
-                       class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'shop:home' %}">Home</a>
+                       class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+                       href="{% url 'shop:home' %}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a aria-current="page"
-                       class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}" href="{% url 'blog:blog' %}">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a aria-current="page"
-                       class="nav-link {% if request.resolver_match.url_name == 'send-newsletter' %}active{% endif %}" href="{% url 'newsletter:send-newsletter' %}">Send newsletter async</a>
+                       class="nav-link {% if request.resolver_match.url_name == 'blog' %}active{% endif %}"
+                       href="{% url 'blog:blog' %}">Blog</a>
                 </li>
             </ul>
         </div>

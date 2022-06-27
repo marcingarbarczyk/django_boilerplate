@@ -9,7 +9,7 @@
           name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     {% compress css %}
-    <link href="{% sass_src 'scss/style.scss' %}" rel="stylesheet">
+        <link href="{% sass_src 'scss/style.scss' %}" rel="stylesheet">
     {% endcompress %}
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -17,8 +17,8 @@
 {% include 'partials/_header.html' %}
 {% block content %}{% endblock %}
 {% compress js %}
-<script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
-<script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 {% endcompress %}
 {% include 'partials/_footer.html' %}
 </body>

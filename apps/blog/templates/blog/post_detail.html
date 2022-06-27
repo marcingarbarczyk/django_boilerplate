@@ -2,47 +2,47 @@
 {% load crispy_forms_tags %}
 {% block title %}{{ post.title }}{% endblock %}
 {% block content %}
-<main>
+    <main>
 
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Blog example</h1>
-            </div>
-        </div>
-    </section>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <article>
-                    <h4>{{ post.title }}</h4>
-                    <p>{{ post.description }}</p>
-                </article>
-                <h3 class="mt-5 mb-3">Comment form</h3>
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    <button class="btn btn-primary" type="submit">Submit</button>
-                </form>
-                <h3 class="mt-5 mb-3">Comments</h3>
-
-                {% if not comments %}
-                <div class="alert alert-info">
-                    There are no comments yet.
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light">Blog example</h1>
                 </div>
-                {% endif %}
-                {% for comment in comments %}
-                <div class="card mb-3">
-                    <div class="card-body"><strong>{{ comment.author }}: </strong>{{ comment.text }}<br><br>
-                        <div class="text-end">
-                            {{ comment.created }}
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <article>
+                        <h4>{{ post.title }}</h4>
+                        <p>{{ post.description }}</p>
+                    </article>
+                    <h3 class="mt-5 mb-3">Comment form</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
+                    <h3 class="mt-5 mb-3">Comments</h3>
+
+                    {% if not comments %}
+                        <div class="alert alert-info">
+                            There are no comments yet.
                         </div>
-                    </div>
+                    {% endif %}
+                    {% for comment in comments %}
+                        <div class="card mb-3">
+                            <div class="card-body"><strong>{{ comment.author }}: </strong>{{ comment.text }}<br><br>
+                                <div class="text-end">
+                                    {{ comment.created }}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
         </div>
-    </div>
-</main>
+    </main>
 {% endblock %}

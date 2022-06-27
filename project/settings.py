@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "apps.shop",
     "apps.blog",
-    "apps.newsletter",
     "apps.books",
     "django_seed",
     "compressor",
@@ -158,7 +157,7 @@ CACHES = {
 # Celery
 
 CELERY_BROKER_URL = os.environ.get("REDIS_URL")
-CELERY_TASK_ALWAYS_EAGER = (os.environ.get("CELERY_TASK_ALWAYS_EAGER") == 'True')
+CELERY_TASK_ALWAYS_EAGER = os.environ.get("CELERY_TASK_ALWAYS_EAGER") == "True"
 
 # Rest Framework
 
@@ -213,7 +212,6 @@ AUTH_USER_MODEL = "membership.User"
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
-
 
 # Debugging
 
