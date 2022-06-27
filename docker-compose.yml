@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./docker_data/db:/var/lib/postgresql/data
+    env_file:
+      - postgres.env
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:81
+    volumes:
+      - .:/code
+    ports:
+      - "81:81"
+    env_file:
+      - django.env
+    depends_on:
+      - db
+      - elasticsearch
+      - redis
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.2.2
+    environment:
+      - xpack.security.enabled=false
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ports:
+      - "9201:9200"
+    volumes:
+      - ./docker_data/elasticsearch:/usr/share/elasticsearch/data
+  redis:
+    image: redis:alpine
+    volumes:
+      - ./docker_data/redis:/data
+    ports:
+      - "6379:6379"
+  celery:
+    build: .
+    command: celery -A project worker -l info -E
+    volumes:
+      - .:/code
+    env_file:
+      - django.env
+    depends_on:
+      - redis
+      - db

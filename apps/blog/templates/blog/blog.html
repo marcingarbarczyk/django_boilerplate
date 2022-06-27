@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}Blog{% endblock %}
+{% block content %}
+<main>
+
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">{% trans "Blog page" %}</h1>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                {% for post in posts %}
+                <article>
+                    <h4>{{ post.title }}</h4>
+                    <p>{{ post.description }}</p>
+                </article>
+                <p class="text-end">
+                    <a class="btn btn-primary" href="{% url 'blog:post-detail' post.slug %}">Read more</a>
+                </p>
+                <hr>
+                {% endfor %}
+                <div class="pagination">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                            </span>
+
+                            {% if page_obj.has_next %}
+                                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                            {% endif %}
+                        </span>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <aside>
+                    <h4>{% trans "Categories" %}</h4>
+                    <ul class="list-group">
+                        {% for category in categories %}
+                        <li class="list-group-item">
+                            <a href="{% url 'blog:blog-category' category.slug %}">{{ category.title }}
+                                ({{ category.posts_count }})
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </aside>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
