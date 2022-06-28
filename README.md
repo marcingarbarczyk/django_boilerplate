@@ -15,4 +15,4 @@ Features:
 * Django extensions
 * User model extended
 
-Just run: docker-compose up -d
+Just run: "docker-compose up -d" and "python manage.py feed_database"

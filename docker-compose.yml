@@ -9,7 +9,7 @@ services:
       - postgres.env
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:81
+    command: sh -c "/code/entrypoint.sh ; python manage.py runserver 0.0.0.0:81"
     volumes:
       - .:/code
     ports:
@@ -27,7 +27,7 @@ services:
       - discovery.type=single-node
       - ES_JAVA_OPTS=-Xms1g -Xmx1g
     ports:
-      - "9201:9200"
+      - "9205:9200"
     volumes:
       - ./docker_data/elasticsearch:/usr/share/elasticsearch/data
   redis:
@@ -35,7 +35,7 @@ services:
     volumes:
       - ./docker_data/redis:/data
     ports:
-      - "6379:6379"
+      - "6500:6379"
   celery:
     build: .
     command: celery -A project worker -l info -E
