@@ -5,6 +5,7 @@ from django_seed import Seed
 from apps.shop.models import *
 from apps.blog.models import *
 from apps.books.models import *
+from apps.shop.models import Category as ShopCategory
 
 
 class Command(BaseCommand):
@@ -39,7 +40,7 @@ class Command(BaseCommand):
         # Shop app
 
         seeder.add_entity(
-            Category,
+            ShopCategory,
             30,
             {
                 "title": lambda x: seeder.faker.text(20),
